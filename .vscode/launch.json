@@ -1,0 +1,38 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    
+    {
+      "name": "clang.exe - 生成并调试活动文件",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${env:USERPROFILE}\\.vscode-debug\\${fileBasenameNoExtension}.exe",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${env:USERPROFILE}\\.vscode-debug",
+      "environment": [],
+      "externalConsole": false,
+      "internalConsoleOptions": "neverOpen",
+      "MIMode": "gdb",
+      "miDebuggerPath": "C:\\msys64\\mingw64\\bin\\gdb.exe",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        },
+        {
+          "description": "Use UTF-8 host charset",
+          "text": "-gdb-set charset UTF-8",
+          "ignoreFailures": true
+        },
+        {
+          "description": "Use UTF-8 target charset",
+          "text": "-gdb-set target-charset UTF-8",
+          "ignoreFailures": true
+        }
+      ],
+      "preLaunchTask": "build: safe then mirror"  // 对应 tasks.json 的 label
+    }
+  ]
+}
