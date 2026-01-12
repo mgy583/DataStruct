@@ -38,3 +38,5 @@ void str_concat(SString *T, SString *S) {
   T->length = total_length;
   T->ch[T->length] = '\0';
 }
+
+int str_length(SString *T) { return T->length; }
