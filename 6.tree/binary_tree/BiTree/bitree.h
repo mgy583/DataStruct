@@ -22,6 +22,8 @@ void in_order(BiTree bt);
 
 void post_order(BiTree bt);
 
+void level_order(BiTree bt);
+
 BiTree create_manual_pre(ElemType *arr, int *idx);
 
 #endif // !BITREE_H

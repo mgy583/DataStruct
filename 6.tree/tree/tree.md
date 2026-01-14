@@ -30,6 +30,60 @@
 | 森林 | 多颗互补相交的树的集合 |
 | 有序树\无序树 | 树中节点的各子树依次从左到右有序\无序,可以交换\不可交换
 
+## 存储结构
+
+- 双亲表示法:
+双亲表示法 主要是使用一个数组，其中每个结点都有一个指示其双亲结点在数组中位置的索引。
+
+```c
+#define MAXSIZE 100
+typedef struct {
+    int data;         // 结点数据
+    int parent;       // 双亲的位置
+} PTNode;
+
+typedef struct {
+    PTNode nodes[MAXSIZE];  // 结点数组
+    int n;                  // 结点数
+} PTree;
+
+```
+
+- 孩子表示法:
+孩子表示法 将每个结点的孩子结点排列起来，以单链表作为存储结构。然后再用一个数组与之相配合。
+
+```c
+#define MAXSIZE 100
+
+// 孩子结点
+typedef struct ChildNode {
+    int child;                   // 孩子结点在数组中的位置
+    struct ChildNode* next;     // 下一个孩子
+} *ChildPtr;
+
+// 表头结构
+typedef struct {
+    int data;                   // 结点数据
+    ChildPtr firstchild;        // 第一个孩子的指针
+} CTBox;
+
+typedef struct {
+    CTBox nodes[MAXSIZE];       // 结点数组
+    int n;                      // 结点数
+} CTree;
+```
+
+- 孩子兄弟表示法:
+孩子兄弟表示法 是将树转化为 二叉树 的形式来存储。每个结点有两个指针，一个指向它的第一个孩子，另一个指向它的右兄弟。
+
+```c
+typedef struct CSNode{
+  int data;
+  struct CSNode *firstchild, *nextsibling;
+}CSNode, *CSTree ;
+
+```
+
 ## 常考性质
 
 ### 考点1 - 节点数 = 总度数 + 1
