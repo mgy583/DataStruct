@@ -10,7 +10,7 @@ typedef struct AdjNode {
 // 图结构
 typedef struct Graph {
   int vnum;                 // 顶点数
-  struct AdjList **array; // 邻接表数组
+  struct AdjNode **array; // 邻接表数组
 } Graph;
 
 Graph *CreateGraph(int vnum);
