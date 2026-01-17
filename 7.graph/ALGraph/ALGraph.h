@@ -1,26 +1,22 @@
 #ifndef ALGRAPH_h
 #include <stdlib.h>
 
-// 链表节点
-typedef struct Node {
-  int dest;          // 顶点编号
-  struct Node *next; // 指向下一个邻接点
-} Node;
-
 // 邻接表
-typedef struct AdjList {
-  struct Node *head; // 链表头
-} AdjList;
+typedef struct AdjNode {
+  int vertex;          // 顶点编号
+  struct AdjNode *next; // 指向下一个邻接点
+} AdjNode;
 
 // 图结构
 typedef struct Graph {
-  int V;                 // 顶点数
-  struct AdjList *array; // 邻接表数组
+  int vnum;                 // 顶点数
+  struct AdjList **array; // 邻接表数组
 } Graph;
 
-Node *new_node(int dest);
+Graph *CreateGraph(int vnum);
 
-Graph *create_graph(int V);
+void AddEdge(Graph *graph, int src, int dest);
 
-void add_edge(Graph *graph, int src, int dest);
+void PrintGraph(Graph *graph);
+
 #endif // !ALGRAPH_h

@@ -1,31 +1,61 @@
 #include "ALGraph.h"
 #include <stdlib.h>
 
-Node *new_node(int dest) {
-  Node *node = (Node *)malloc(sizeof(Node));
-  node->dest = dest;
-  node->next = NULL;
-  return node;
-}
-
-Graph *create_graph(int V) {
+Graph *CreateGraph(int vnum) {
   Graph *graph = (Graph *)malloc(sizeof(Graph));
-  graph->V = V;
-
-  // 创建邻接表数组
-  graph->array = (AdjList *)malloc(V * sizeof(AdjList));
-  for (int i = 0; i < V; ++i)
-    graph->array[i].head = NULL;
-
+  graph->vnum = vnum;
+  graph->array = (AdjNode **)malloc(vnum * sizeof(AdjNode *));
+  for (int i = 0; i < vnum; i++) {
+    graph->array[i] = NULL;
+  }
   return graph;
 }
 
-void add_edge(Graph *graph, int src, int dest) {
-  Node *n1 = new_node(dest);
-  n1->next = graph->array[src].head;
-  graph->array[src].head = n1;
+// 有向图加入边
+void AddEdge(Graph *graph, int src, int dest) {
+  AdjNode *newNode = (AdjNode *)malloc(sizeof(AdjNode));
+  newNode->vertex = dest;
+  newNode->next = graph->array[src];
+  graph->array[src] = newNode;
+}
 
-  Node *n2 = new_node(dest);
-  n2->next = graph->array[dest].head;
-  graph->array[dest].head = n2;
+void PrintGraph(Graph *graph) {
+  for (int v = 0; v < graph->vnum; v++)
+  {
+    printf("%d:", v);
+    for (AdjNode *p = graph->array[v]; p != NULL; p = p->next)
+      printf(" -> %d", p->vertex);
+  }
+  printf("\n");
+}
+
+void freeGraph(Graph *graph) {
+  for (int v = 0; v < graph->vnum; ++v)
+  {
+    AdjNode *p = graph->array[v];
+    while(p) {
+      AdjNode *temp = p;
+      p = p->next;
+      free(temp);
+    }
+  }
+  free(graph->array);
+  free(graph);  
+}
+
+int main() {
+  int V = 5;
+  Graph *graph = CreateGraph(V);
+  AddEdge(graph, 0, 1);
+  AddEdge(graph, 0, 4);
+  AddEdge(graph, 1, 2);
+  AddEdge(graph, 1, 3);
+  AddEdge(graph, 1, 4);
+  AddEdge(graph, 2, 3);
+  AddEdge(graph, 3, 4);
+
+  PrintGraph(graph);
+
+  freeGraph(graph);
+  return 0;
 }
