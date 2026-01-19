@@ -12,11 +12,20 @@ void destroy_quene(SqQueue *Q) {
   Q->front = 0;
   Q->rear = 0;
 }
+// 判断队列是否为空
+bool is_empty(SqQueue *Q) { 
+  return Q->front == Q->rear; 
+}
 
-bool is_empty(SqQueue *Q) { return Q->front == Q->rear; }
+// 判断队列是否已满
+bool is_full(SqQueue *Q) { 
+  return (Q->rear + 1) % MAXSIZE == Q->front; 
+}
+
+/* bool is_empty(SqQueue *Q) { return Q->front == Q->rear; }
 
 bool is_full(SqQueue *Q) { return (Q->rear + 1) % MAXSIZE == Q->front; }
-
+ */
 // 入队
 void enquene(SqQueue *Q, ElementType x) {
   if (is_full(Q)) {

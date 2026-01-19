@@ -1,13 +1,14 @@
+#include "stack_array.h"
 #include<stdio.h>
 #include<stdlib.h>
 
-#define MAXSIZE 100
+/* #define MAXSIZE 100
 
 typedef struct StackNode {
     int data[MAXSIZE];
     int top;
 } StackNode;
-
+ */
 void initStack(StackNode* stack) {
     stack->top = -1;
 }
@@ -46,15 +47,15 @@ int peek(StackNode stack, int* value) {
 }
 
 int get_top(StackNode* stack) {
-    if (isEmpty(&stack)) {
+    if (isEmpty(stack)) {
         return -1; // Stack is empty
     }
-    pop(stack, NULL);
+    // pop(stack, NULL);
     return stack->data[stack->top];
 }
 
 
-int main() {
+/* int main() {
     StackNode stack;
     initStack(&stack);
     push(&stack, 10);
@@ -72,4 +73,4 @@ int main() {
     }
 
     return 0;
-}
+} */

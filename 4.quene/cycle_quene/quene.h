@@ -3,7 +3,10 @@
 
 #include <stdbool.h>
 
-#define MAXSIZE 5
+// #define MAXSIZE 20
+#define MAX_NUM 128
+#define MAXSIZE        (MAX_NUM + 1)  
+
 typedef int ElementType;
 
 typedef struct {
